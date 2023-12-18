@@ -16,7 +16,8 @@ import java.util.Optional;
 import jakarta.validation.ValidationException;
 
 @Component
-public abstract class CryptocurrencyPaymentService {
+public abstract sealed class CryptocurrencyPaymentService
+        permits BinancePaymentService, CoinGateService, Some3rdPartyPaymentService {
 
     protected final UserDetailsService userService;
     protected final UserCryptocurrencyRepository userCryptocurrencyRepository;

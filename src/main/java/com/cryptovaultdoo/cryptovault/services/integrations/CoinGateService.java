@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CoinGateService extends CryptocurrencyPaymentService {
+public non-sealed class CoinGateService extends CryptocurrencyPaymentService {
 
     Logger log = LoggerFactory.getLogger(CoinGateService.class);
 

@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BinancePaymentService extends CryptocurrencyPaymentService {
+public non-sealed class BinancePaymentService extends CryptocurrencyPaymentService {
 
     Logger log = LoggerFactory.getLogger(BinancePaymentService.class);
 

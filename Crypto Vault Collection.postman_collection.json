@@ -1,0 +1,321 @@
+{
+	"info": {
+		"_postman_id": "4f7b2850-85ee-45a0-b1b3-0a19aeab7dc0",
+		"name": "Crypto Vault Collection",
+		"description": "All endpoints require bearer authentication, except Authentication/Login endpoint.\nThat one is used to obtain JWT which needs to be passed as auth header.\n\n\n***IMPORTANT NOTE***:\nFolders Vault and Payment have prescript that calls /login endpoint, stores JWT and then uses it for all endpoints inside that folder.\nThat means even though they are secured it appears that they are not but inspecting console or prescript itself we can see how that works.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login endpoint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/login?username=user&password=user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "user"
+								},
+								{
+									"key": "password",
+									"value": "user"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vault",
+			"item": [
+				{
+					"name": "Inspect Smart Contracts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/vault/contracts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"vault",
+								"contracts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deposit Smart Contract",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test contract\",\r\n    \"contractAddress\": \"0x00000000000000000000000000000000111a2b3c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/vault/contracts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"vault",
+								"contracts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inspect cryptocurrencies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/vault/cryptocurrencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"vault",
+								"cryptocurrencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deposit Cryptocurrencies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test cryptocurrency\",\r\n    \"code\": \"TST\",\r\n    \"amount\": 10.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/vault/cryptocurrencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"vault",
+								"cryptocurrencies"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// change properties if other user created",
+							"const url = \"http://localhost:8080/api/v1/auth/login?username=user&password=user\"",
+							"",
+							"pm.sendRequest({",
+							"    url: url,",
+							"    method: \"GET\",",
+							"}, function (err, response) {",
+							"    if (err) {",
+							"        console.error(err);",
+							"    } else {",
+							"        const responseBody = response.json();",
+							"        const token = responseBody.token;",
+							"",
+							"        pm.environment.set(\"jwt\", token);",
+							"        console.log(\"Token stored:\", token);",
+							"    }",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Execute payment with cryptocurrency",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"ETH\",\r\n    \"amount\": 0.22\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/payment?paymentType=BINANCE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"payment"
+							],
+							"query": [
+								{
+									"key": "paymentType",
+									"value": "BINANCE"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// change properties if other user created",
+							"const url = \"http://localhost:8080/api/v1/auth/login?username=user&password=user\"",
+							"",
+							"pm.sendRequest({",
+							"    url: url,",
+							"    method: \"GET\",",
+							"}, function (err, response) {",
+							"    if (err) {",
+							"        console.error(err);",
+							"    } else {",
+							"        const responseBody = response.json();",
+							"        const token = responseBody.token;",
+							"",
+							"        pm.environment.set(\"jwt\", token);",
+							"        console.log(\"Token stored:\", token);",
+							"    }",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
