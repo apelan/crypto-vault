@@ -15,7 +15,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/v1/payment")
+@RequestMapping("/api/v1/payment")
 @Tag(name = "Payment API", description = "Endpoints used to execute payments")
 public class PaymentController {
 

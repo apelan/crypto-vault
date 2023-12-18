@@ -16,7 +16,6 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI openAPI() {
         return new OpenAPI()
-                .addServersItem(new Server().url("/api").description("Default server URL"))
                 .addSecurityItem(new SecurityRequirement().addList("Bearer authorization"))
                 .components(new Components()
                         .addSecuritySchemes("Bearer authorization",

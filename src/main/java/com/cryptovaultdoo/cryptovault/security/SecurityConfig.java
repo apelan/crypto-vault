@@ -30,7 +30,7 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests -> requests.requestMatchers(SWAGGER_ENDPOINTS).permitAll())
-                .authorizeHttpRequests(requests -> requests.requestMatchers("/v1/auth/**").permitAll())
+                .authorizeHttpRequests(requests -> requests.requestMatchers("/api/v1/auth/**").permitAll())
                 .authorizeHttpRequests(requests -> requests.anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .httpBasic(withDefaults())

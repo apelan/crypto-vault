@@ -19,7 +19,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/v1/vault")
+@RequestMapping("/api/v1/vault")
 @Tag(name = "Vault API", description = "Endpoints used to manipulate with Vault")
 public class VaultController {
 
