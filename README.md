@@ -43,8 +43,10 @@ Download from [official website](https://www.postgresql.org/download/). Run inst
 
 
 
+- <b>Test API</b> <br>
+We can test API with Swagger by accessing [link](https://crypto-vault-production.up.railway.app/) or using any rest client. I've provided [Postman Collection](https://github.com/apelan/crypto-vault/blob/main/Crypto%20Vault%20Collection.postman_collection.json) in root folder of project.<br> Postman Collection is configured for local usage, to test against deployed application on Railway you need to change url. <br>
+
 - <b>Use API</b> <br>
-We can use API with Swagger by accessing [link](http://localhost:8080/api) or using any rest client, i've provided [Postman Collection](https://github.com/apelan/crypto-vault/blob/main/Crypto%20Vault%20Collection.postman_collection.json) in root folder of project.<br>
-In order to use API, we must hit /login endpoint first (_default userername=user and password=user_) which will return us JWT. <br>
+In order to use API, we must hit /login endpoint first (_default username=user and password=user_) which will return us JWT. <br>
 We can use that JWT token as Bearer Authentication header for other endpoints, keep in mind that it expires in 60mins. <br>
-If you use provided Postman Collection there is pre-script calls /login endpoint before each request, thus making API testing easier.
+If you use provided Postman Collection there is pre-script which calls /login endpoint before each request, thus making API testing easier.
