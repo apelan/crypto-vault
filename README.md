@@ -8,7 +8,7 @@ All data is persisted in PostgreSQL database, integration tests are performed wi
 OpenAPI(Swagger) is used for API documentation.
 
 ### Link to access
-Crypto Vault API is hosted on Railway and can be access [via this link](). <br>
+Crypto Vault API is hosted on Railway and can be access [via this link](https://crypto-vault-production.up.railway.app/). <br>
 
 
 ### Prerequisites to run on local machine
