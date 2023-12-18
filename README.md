@@ -3,7 +3,7 @@
 
 ### Technology used
 Crypto Vault API is created using Java and web framework Spring Boot. <br>
-Secured with Bearer Authentication with [Json Web Tokens](https://jwt.io/). <br>
+Secured using Bearer Authentication with [Json Web Tokens](https://jwt.io/). <br>
 All data is persisted in PostgreSQL database, integration tests are performed with H2 in-memory database. <br>
 OpenAPI(Swagger) is used for API documentation.
 
