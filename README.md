@@ -8,9 +8,6 @@ All data is persisted in PostgreSQL database, integration tests are performed wi
 Database migrations are performed with Flyway. <br>
 OpenAPI(Swagger) is used for API documentation.
 
-### Link to access
-Crypto Vault API is hosted on Railway and can be access [via this link](https://crypto-vault-production.up.railway.app/). <br>
-
 
 ### Prerequisites to run on local machine
 
@@ -44,7 +41,7 @@ Download from [official website](https://www.postgresql.org/download/). Run inst
 
 
 - <b>Test API</b> <br>
-We can test API with Swagger by accessing [link](https://crypto-vault-production.up.railway.app/) or using any rest client. I've provided [Postman Collection](https://github.com/apelan/crypto-vault/blob/main/Crypto%20Vault%20Collection.postman_collection.json) in root folder of project.<br> Postman Collection is configured for local usage, to test against deployed application on Railway you need to change url. <br>
+We can test API with Swagger (when running on local) or using any rest client. I've provided [Postman Collection](https://github.com/apelan/crypto-vault/blob/main/Crypto%20Vault%20Collection.postman_collection.json) in root folder of project.<br> Postman Collection is configured for local usage, to test against deployed application on Railway you need to change url. <br>
 
 - <b>Use API</b> <br>
 In order to use API, we must hit /login endpoint first (_default username=user and password=user_) which will return us JWT. <br>
