@@ -8,6 +8,7 @@ All data is persisted in PostgreSQL database, integration tests are performed wi
 Database migrations are performed with Flyway. <br>
 OpenAPI(Swagger) is used for API documentation.
 
+<hr/>
 
 ### Prerequisites to run on local machine
 
